@@ -1,13 +1,41 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
+import {useEffect} from 'react';
 import './App.css'
+function getData()
+{
+  const url = 'https://corsproxy.io/?drive.google.com/uc?export=download&id=15Tbuw6r4zVGOKszi-CBbfUQITTLVreCQ';
+
+const response = await fetch(url);
+
+const text = await response.text();
+
+console.log(text);
+  
+  
+    
+  }
+
+const imageData=[
+{
+  title: "zia simpson",
+  url:"https://drive.google.com/file/d/1fSnJgRD0h1XuJvjEXUfBa49lld31qkud/view?usp=sharing"
+},{
+title: "eyeball detective",
+url:"https://drive.google.com/file/d/1TWWkVOv5zQnZjgWMpgYPfUvRav6dnBEU/view?usp=sharing"
+},
+{
+  title:"tennis lila",
+  url:"https://drive.google.com/file/d/1fDBMKkC9vrGlPozOHEbXYlH41dJsDjRR/view?usp=sharing"
+}
+]
 function RandomImage(props)
 {
   const style={marginTop: "0.2%",marginLeft:"0.9%"}
   if(props.num??0)
   { 
-    console.log(props.num);
+  
   return <img style={style} src={`https://picsum.photos/200/200?random${props.num}`}></img>
   }
   else
@@ -41,11 +69,11 @@ function RandomImageList(props)
 {
   let images=[];
   for (let i=0; i<props.count;i++){
-    console.log("looping at "+i)
+  
     images.push(i);
   
   }
-  console.log(images.length);
+  
   return (
     <div>
     {images.map((numv)=>(
@@ -55,9 +83,15 @@ function RandomImageList(props)
     </div>
   )
 }
-function DriveImageRenderList(props)
+function DriveImageRenderList(array)
 {
-  
+   getData();
+  console.log(imageData.length);
+  return(imageData.map((work)=>(
+    
+    <DriveImage title={work.title} url={work.url}/>
+    
+))  )
 }
 
   <RandomImageList count={150}/>
@@ -70,8 +104,8 @@ function App() {
       <div>
       <h1>gallery</h1>
     
-    <DriveImage url="https://drive.google.com/file/d/1fSnJgRD0h1XuJvjEXUfBa49lld31qkud/view?usp=sharing" title="zia simpson"/>
-
+   
+    <DriveImageRenderList />
       </div>
     
    

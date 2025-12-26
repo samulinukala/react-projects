@@ -5,16 +5,19 @@ import {useEffect} from 'react';
 import './App.css'
 function getData()
 {
-  const url = 'https://corsproxy.io/?drive.google.com/uc?export=download&id=15Tbuw6r4zVGOKszi-CBbfUQITTLVreCQ';
+  const url = 'https://corsproxy.io/?gist.githubusercontent.com/samulinukala/63f55f2f4d784a9e3c0856bfd6c75a80/raw/5e32201f5e15dcd536f2bcb03ec2ff6822f35177/artDb.json';
 
-const response = await fetch(url);
-
-const text = await response.text();
-
-console.log(text);
+return fetch(url
+).then((response)=>response.json()
+.then((data)=>{
+  return data;
+})
+.catch((error)=> {
+  console.error(error);
+}
+  )
   
-  
-    
+   )
   }
 
 const imageData=[

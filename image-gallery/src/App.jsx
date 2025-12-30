@@ -5,11 +5,12 @@ import {useEffect} from 'react';
 import './App.css'
 function getData()
 {
-  const url = 'https://corsproxy.io/?gist.githubusercontent.com/samulinukala/63f55f2f4d784a9e3c0856bfd6c75a80/raw/5e32201f5e15dcd536f2bcb03ec2ff6822f35177/artDb.json';
+  const url = 'https://corsproxy.io/?gist.githubusercontent.com/samulinukala/63f55f2f4d784a9e3c0856bfd6c75a80.json';
 
 return fetch(url
 ).then((response)=>response.json()
 .then((data)=>{
+  console.log(data);
   return data;
 })
 .catch((error)=> {
@@ -19,6 +20,23 @@ return fetch(url
   
    )
   }
+  async function getDataE()
+{
+  const url = 'https://corsproxy.io/?https://gist.github.com/samulinukala/63f55f2f4d784a9e3c0856bfd6c75a80/raw/artDb.json';
+
+const response= await fetch(url);
+const data=await response.json();
+
+
+console.log(data);
+return data;  
+  
+}
+
+  
+  
+   
+  
 
 const imageData=[
 {
@@ -88,7 +106,9 @@ function RandomImageList(props)
 }
 function DriveImageRenderList(array)
 {
-   getData();
+   
+  const data=getDataE();
+  console.log(data);
   console.log(imageData.length);
   return(imageData.map((work)=>(
     

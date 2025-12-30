@@ -28,7 +28,7 @@ const response= await fetch(url);
 const data=await response.json();
 
 
-console.log(data);
+
 return data;  
   
 }
@@ -38,19 +38,7 @@ return data;
    
   
 
-const imageData=[
-{
-  title: "zia simpson",
-  url:"https://drive.google.com/file/d/1fSnJgRD0h1XuJvjEXUfBa49lld31qkud/view?usp=sharing"
-},{
-title: "eyeball detective",
-url:"https://drive.google.com/file/d/1TWWkVOv5zQnZjgWMpgYPfUvRav6dnBEU/view?usp=sharing"
-},
-{
-  title:"tennis lila",
-  url:"https://drive.google.com/file/d/1fDBMKkC9vrGlPozOHEbXYlH41dJsDjRR/view?usp=sharing"
-}
-]
+
 function RandomImage(props)
 {
   const style={marginTop: "0.2%",marginLeft:"0.9%"}
@@ -104,20 +92,38 @@ function RandomImageList(props)
     </div>
   )
 }
-function DriveImageRenderList(array)
+function DriveImageRenderList()
 {
-   
-  const data=getDataE();
-  console.log(data);
-  console.log(imageData.length);
-  return(imageData.map((work)=>(
-    
-    <DriveImage title={work.title} url={work.url}/>
-    
-))  )
+  const [images,setImages]=useState([])
+      useEffect(()=>{
+       getDataE().then((result)=>{
+      console.log(result);
+      console.log(result.imageData);
+     setImages( result.imageData);
+     });
+        
+      },
+      []);
+  
+     return (
+       <div>
+        { images.map
+        ((work)=>
+         (
+          <DriveImage title={work.title} url={work.url}/>
+         )
+        )
+        }
+  </div>
+  );
+  
+  
+  
+  
+
+
 }
 
-  <RandomImageList count={150}/>
 function App() {
 
 
@@ -134,5 +140,6 @@ function App() {
    
   )
 }
+
 
 export default App

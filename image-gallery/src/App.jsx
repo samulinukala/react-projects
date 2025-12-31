@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import {useEffect} from 'react';
 import './App.css'
+import './assets/artDb.json'
 function getData()
 {
   const url = 'https://corsproxy.io/?gist.githubusercontent.com/samulinukala/63f55f2f4d784a9e3c0856bfd6c75a80.json';
@@ -94,6 +95,7 @@ function RandomImageList(props)
 }
 function DriveImageRenderList()
 {
+  
   const [images,setImages]=useState([])
       useEffect(()=>{
        getDataE().then((result)=>{
